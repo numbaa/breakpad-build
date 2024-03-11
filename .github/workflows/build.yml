@@ -12,11 +12,10 @@ jobs:
           repository: google/breakpad
           ref: chrome_99
       - name: Checkout lss
-        uses: actions/checkout@v4
-        with:
-          repository: https://chromium.googlesource.com/linux-syscall-support
-          ref: e1e7b0ad8ee99a875b272c8e33e308472e897660
-          path: breakpad/src/third_party/lss
+        run: |
+          git clone https://chromium.googlesource.com/linux-syscall-support src/third_party/lss
+          cd src/third_party/lss
+          git checkout e1e7b0ad8ee99a875b272c8e33e308472e897660
       - name: Build
         run: |
           chmod +x ./configure
